@@ -46,6 +46,21 @@ const AdjectiveSelection = ({ selections, onSelectionsUpdate }) => {
           </div>
           <span>{completedCount} of {adjectivePairs.length} completed</span>
         </div>
+        <div className="definition-panel">
+          <div className="definition-content">
+            {hoveredWord ? (
+              <>
+                <h3>{hoveredWord}</h3>
+                <p>{adjectiveDefinitions[hoveredWord]}</p>
+              </>
+            ) : (
+              <div className="definition-placeholder">
+                <h3>Hover over an adjective</h3>
+                <p>Move your mouse over any adjective to see its definition and help guide your selection.</p>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
 
       <div className="selection-content">
@@ -79,21 +94,7 @@ const AdjectiveSelection = ({ selections, onSelectionsUpdate }) => {
           ))}
         </div>
 
-        <div className="definition-panel">
-          <div className="definition-content">
-            {hoveredWord ? (
-              <>
-                <h3>{hoveredWord}</h3>
-                <p>{adjectiveDefinitions[hoveredWord]}</p>
-              </>
-            ) : (
-              <div className="definition-placeholder">
-                <h3>Hover over an adjective</h3>
-                <p>Move your mouse over any adjective to see its definition and help guide your selection.</p>
-              </div>
-            )}
-          </div>
-        </div>
+        
       </div>
 
       <div className="selection-footer">

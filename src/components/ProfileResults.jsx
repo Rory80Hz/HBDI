@@ -158,8 +158,7 @@ const ProfileResults = ({ userData }) => {
   return (
     <div className="profile-results">
       <div className="results-header">
-        <h2>Your HBDI Profile</h2>
-        <h3>Hello, {userData.name}!</h3>
+        <h2>Here is your HBDI Profile {userData.name}!</h2>
         <p>Based on your selections, here is your Herrmann Brain Dominance profile.</p>
       </div>
 

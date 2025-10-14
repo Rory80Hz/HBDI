@@ -22,10 +22,7 @@ function App() {
   return (
     <Router>
       <div className="app">
-        <header className="app-header">
-          <h1>HBDI Assessment</h1>
-          <p>Herrmann Brain Dominance Index</p>
-        </header>
+
         
         <main className="app-main">
           <Routes>
