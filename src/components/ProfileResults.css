@@ -1,0 +1,250 @@
+.profile-results {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: white;
+  min-height: 100vh;
+}
+
+.results-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.results-header h2 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.results-header h3 {
+  color: #3498db;
+  margin-bottom: 1rem;
+}
+
+.results-header p {
+  color: #7f8c8d;
+}
+
+.results-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.profile-visualization-large {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brain-chart-large {
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.score-breakdown-horizontal {
+  width: 100%;
+  max-width: 800px;
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.score-breakdown-horizontal h3 {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.score-items-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.score-item-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.score-item-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.score-color-large {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.score-color-large.blue { background: #3498db; }
+.score-color-large.yellow { background: #f1c40f; }
+.score-color-large.red { background: #e74c3c; }
+.score-color-large.green { background: #2ecc71; }
+
+.score-info {
+  flex: 1;
+}
+
+.score-label {
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 0.25rem;
+  font-size: 1.1rem;
+}
+
+.score-description {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin-bottom: 0.5rem;
+}
+
+.score-value {
+  font-size: 0.9rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.score-bar {
+  width: 100%;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.score-fill {
+  height: 100%;
+  transition: width 0.5s ease;
+}
+
+.dominant-style {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.dominant-style h3 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+}
+
+.dominant-color {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.dominant-color div {
+  color: #2c3e50;
+}
+
+.dominant-color strong {
+  color: #2c3e50;
+}
+
+.dominant-color p {
+  color: #2c3e50;
+  margin: 0;
+}
+
+.dominant-indicator {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dominant-indicator.blue { background: #3498db; }
+.dominant-indicator.yellow { background: #f1c40f; }
+.dominant-indicator.red { background: #e74c3c; }
+.dominant-indicator.green { background: #2ecc71; }
+
+.results-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: #3498db;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #2980b9;
+}
+
+.btn-secondary {
+  background: #95a5a6;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #7f8c8d;
+}
+
+@media (max-width: 768px) {
+  .score-items-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .brain-chart-large {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+  
+  .results-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .dominant-color {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .score-breakdown-horizontal {
+    padding: 1rem;
+  }
+}
+
+@media print {
+  .results-actions {
+    display: none;
+  }
+  
+  .profile-results {
+    max-width: none;
+    margin: 0;
+    padding: 1rem;
+  }
+}
