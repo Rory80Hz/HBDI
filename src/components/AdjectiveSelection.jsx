@@ -15,6 +15,10 @@ const AdjectiveSelection = ({ selections, onSelectionsUpdate }) => {
     }
   }, [currentSelections.length])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const handleSelection = (pairIndex, side) => {
     const newSelections = [...currentSelections]
     newSelections[pairIndex] = side

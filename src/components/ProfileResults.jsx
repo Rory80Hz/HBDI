@@ -24,6 +24,10 @@ const ProfileResults = ({ userData }) => {
     drawBrainProfile()
   }, [userData, navigate])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const scores = calculateScores(userData.selections || [])
   const maxScore = Math.max(...Object.values(scores))
   const dominantColor = Object.entries(scores).find(([, score]) => score === maxScore)?.[0]

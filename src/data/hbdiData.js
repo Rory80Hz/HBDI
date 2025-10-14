@@ -168,7 +168,7 @@ export const adjectiveDefinitions = {
   "Creative": "using skill and imagination to produce something new",
   "Realistic": "accepting what is sensible, appropriate, or possible to achieve",
   "Detailed": "paying great attention to details",
-  "Empathic": "able to understand another's feelings because you can imagine what it's like to be that person",
+  "Empathic": "able to understand another's feelings as you can imagine what it's like to be that person",
   "Critical": "making fair, careful judgements about the good and bad qualities of somebody/something",
   "Interpersonal": "connected with relationships between people",
   "Imaginative": "having or showing new and exciting ideas"

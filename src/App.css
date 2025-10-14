@@ -18,49 +18,19 @@ body {
 
 .app {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.app-header {
-  background: #f8f9fa;
-  border-bottom: 1px solid #e9ecef;
-  padding: 1.5rem 2rem;
-  text-align: center;
-}
-
-.app-header h1 {
-  color: #2c3e50;
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  font-weight: 700;
-}
-
-.app-header p {
-  color: #7f8c8d;
-  font-size: 1.1rem;
-  font-weight: 500;
+  width: 100%;
 }
 
 .app-main {
-  flex: 1;
   padding: 2rem 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 @media (max-width: 768px) {
-  .app-header {
-    padding: 1rem;
-  }
-  
-  .app-header h1 {
-    font-size: 2rem;
-  }
-  
-  .app-header p {
-    font-size: 1rem;
-  }
-  
   .app-main {
-    padding: 1rem 0;
+    padding: 1rem;
+    max-width: 100%;
   }
 }
