@@ -155,6 +155,46 @@ const ProfileResults = ({ userData }) => {
     navigate('/')
   }
 
+  const addToTeamMap = () => {
+    // Get existing team data
+    const existingTeamData = JSON.parse(localStorage.getItem('hbdiTeamData') || '[]')
+    
+    // Check if user is already in team (by name)
+    const existingMemberIndex = existingTeamData.findIndex(member => 
+      member.name.toLowerCase() === userData.name.toLowerCase()
+    )
+    
+    // Create new team member entry with score mapping
+    const newMember = {
+      id: Date.now(),
+      name: userData.name,
+      scores: {
+        purpose: scores.blue,        // blue maps to purpose
+        possibilities: scores.yellow, // yellow maps to possibilities  
+        people: scores.red,          // red maps to people
+        process: scores.green        // green maps to process
+      },
+      timestamp: new Date().toISOString()
+    }
+    
+    // Update or add team member
+    let updatedTeamData
+    if (existingMemberIndex >= 0) {
+      // Replace existing member
+      updatedTeamData = [...existingTeamData]
+      updatedTeamData[existingMemberIndex] = newMember
+    } else {
+      // Add new member
+      updatedTeamData = [...existingTeamData, newMember]
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('hbdiTeamData', JSON.stringify(updatedTeamData))
+    
+    // Navigate directly to team results
+    navigate('/team-results')
+  }
+
   if (!userData.name || !userData.selections) {
     return null
   }
@@ -229,7 +269,7 @@ const ProfileResults = ({ userData }) => {
         <h3>Want to compare with your team?</h3>
         <div className="team-buttons">
           <button 
-            onClick={() => navigate('/team-map')}
+            onClick={addToTeamMap}
             className="btn-team"
           >
             Add to Team Map
