@@ -1,13 +1,13 @@
-<!-- HBDI Assessment Application Development Checklist -->
+<!-- Brain Dominance Assessment Application Development Checklist -->
 
 - [x] Clarify Project Requirements
-	<!-- React SPA for HBDI assessment with 3 screens, browser cache storage, AWS Amplify deployment -->
+	<!-- React SPA for Brain Dominance assessment with 3 screens, browser cache storage, AWS Amplify deployment -->
 
 - [x] Scaffold the Project
 	<!-- Created Vite React project structure -->
 
 - [x] Customize the Project
-	<!-- Implemented HBDI assessment screens and data structure -->
+	<!-- Implemented Brain Dominance assessment screens and data structure -->
 
 - [x] Install Required Extensions
 	<!-- No specific extensions required -->

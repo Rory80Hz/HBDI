@@ -1,6 +1,6 @@
-# HBDI Assessment Application
+# Brain Dominance Assessment Application
 
-A React single-page application for conducting Herrmann Brain Dominance Index (HBDI) assessments. This tool helps users understand their thinking preferences through a series of adjective pair selections.
+A React single-page application for conducting Brain Dominance assessments. This tool helps users understand their thinking preferences through a series of adjective pair selections.
 
 ## Features
 
@@ -41,7 +41,7 @@ A React single-page application for conducting Herrmann Brain Dominance Index (H
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd HBDI
+cd brain-dominance-assessment
 ```
 
 2. Install dependencies:
@@ -83,10 +83,10 @@ The build configuration in `amplify.yml`:
 ### Environment Variables
 No environment variables are required for this application as it uses browser localStorage for data persistence.
 
-## HBDI Assessment Structure
+## Brain Dominance Assessment Structure
 
 ### Data Model
-- **24 Adjective Pairs**: Based on official HBDI materials
+- **24 Adjective Pairs**: Based on thinking style assessment materials
 - **Four Quadrants**: 
   - Blue (Analytical, Logical, Technical)
   - Yellow (Creative, Conceptual, Artistic)  
@@ -108,7 +108,7 @@ src/
 │   ├── ProfileResults.jsx     # Screen 3: Results
 │   └── *.css                  # Component styles
 ├── data/
-│   └── hbdiData.js           # Assessment data and logic
+│   └── brainData.js           # Assessment data and logic
 ├── App.jsx                   # Main app with routing
 └── main.jsx                  # React entry point
 ```
@@ -130,7 +130,7 @@ src/
 
 ## License
 
-This project is for educational and assessment purposes. HBDI is a trademark of Herrmann Global.
+This project is for educational and assessment purposes.
 
 ## Support
 

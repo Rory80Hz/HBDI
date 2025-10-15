@@ -10,7 +10,7 @@ function TeamResults() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem('hbdiTeamData') || '[]')
+    const data = JSON.parse(localStorage.getItem('brainTeamData') || '[]')
     setTeamData(data)
   }, [])
 
@@ -244,13 +244,13 @@ function TeamResults() {
   const removeMember = (memberId) => {
     const updatedTeamData = teamData.filter(member => member.id !== memberId)
     setTeamData(updatedTeamData)
-    localStorage.setItem('hbdiTeamData', JSON.stringify(updatedTeamData))
+    localStorage.setItem('brainTeamData', JSON.stringify(updatedTeamData))
   }
 
   const clearAllData = () => {
     if (window.confirm('Are you sure you want to remove all team members?')) {
       setTeamData([])
-      localStorage.removeItem('hbdiTeamData')
+      localStorage.removeItem('brainTeamData')
     }
   }
 
@@ -260,7 +260,7 @@ function TeamResults() {
     <div className="team-results-container">
       <div className="team-results-content">
         <header className="team-results-header">
-          <h1>Team HBDI Map</h1>
+          <h1>Team Brain Dominance Map</h1>
           <p>Visualization of team member thinking preferences</p>
         </header>
 

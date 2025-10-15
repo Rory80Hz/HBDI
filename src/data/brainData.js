@@ -1,5 +1,5 @@
-// HBDI Assessment Data Structure
-// Based on Hermann Brain Dominance Index materials
+// Brain Dominance Assessment Data Structure
+// Based on thinking style assessment materials
 
 export const adjectivePairs = [
   {

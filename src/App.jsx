@@ -19,12 +19,12 @@ function ScrollToTop() {
 
 function App() {
   const [userData, setUserData] = useState(() => {
-    const saved = localStorage.getItem('hbdiUserData')
+    const saved = localStorage.getItem('brainUserData')
     return saved ? JSON.parse(saved) : { name: '', selections: [] }
   })
 
   useEffect(() => {
-    localStorage.setItem('hbdiUserData', JSON.stringify(userData))
+    localStorage.setItem('brainUserData', JSON.stringify(userData))
   }, [userData])
 
   const updateUserData = (data) => {

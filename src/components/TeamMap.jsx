@@ -77,7 +77,7 @@ function TeamMap() {
     
     // Add to team data
     const updatedTeamData = [...existingTeamData, newMember]
-    localStorage.setItem('hbdiTeamData', JSON.stringify(updatedTeamData))
+    localStorage.setItem('brainTeamData', JSON.stringify(updatedTeamData))
     
     // Navigate to team results
     navigate('/team-results')

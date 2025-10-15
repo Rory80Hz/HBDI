@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { adjectivePairs, adjectiveDefinitions } from '../data/hbdiData'
+import { adjectivePairs, adjectiveDefinitions } from '../data/brainData'
 import './AdjectiveSelection.css'
 
 const AdjectiveSelection = ({ selections, onSelectionsUpdate }) => {
