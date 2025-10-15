@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { calculateScores } from '../data/hbdiData'
+import { calculateScores } from '../data/brainData'
 import './ProfileResults.css'
 
 // Updated color mapping for the correct diagonal quadrant positions
@@ -151,13 +151,13 @@ const ProfileResults = ({ userData }) => {
   }, [])
 
   const resetAssessment = () => {
-    localStorage.removeItem('hbdiUserData')
+    localStorage.removeItem('brainUserData')
     navigate('/')
   }
 
   const addToTeamMap = () => {
     // Get existing team data
-    const existingTeamData = JSON.parse(localStorage.getItem('hbdiTeamData') || '[]')
+    const existingTeamData = JSON.parse(localStorage.getItem('brainTeamData') || '[]')
     
     // Check if user is already in team (by name)
     const existingMemberIndex = existingTeamData.findIndex(member => 
@@ -189,7 +189,7 @@ const ProfileResults = ({ userData }) => {
     }
     
     // Save to localStorage
-    localStorage.setItem('hbdiTeamData', JSON.stringify(updatedTeamData))
+    localStorage.setItem('brainTeamData', JSON.stringify(updatedTeamData))
     
     // Navigate directly to team results
     navigate('/team-results')
@@ -202,8 +202,8 @@ const ProfileResults = ({ userData }) => {
   return (
     <div className="profile-results">
       <div className="results-header">
-        <h2>Here is your HBDI Profile {userData.name}!</h2>
-        <p>Based on your selections, here is your Herrmann Brain Dominance profile.</p>
+        <h2>Here is your Brain Dominance Profile {userData.name}!</h2>
+        <p>Based on your selections, here is your Brain Dominance profile.</p>
       </div>
 
       <div className="results-content">

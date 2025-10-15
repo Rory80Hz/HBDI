@@ -20,11 +20,11 @@ const NameEntry = ({ name, onNameSubmit }) => {
 
   return (
     <div className="name-entry">
-      <div className="name-entry-card">
-        <h2>Welcome to the HBDI Assessment</h2>
+            <div className="name-entry-content">
+        <h2>Welcome to the Brain Dominance Assessment</h2>
         <p>
-          The Herrmann Brain Dominance Index (HBDI) is a tool that helps you understand 
-          your thinking preferences. This assessment will take about 5-10 minutes to complete.
+          The Brain Dominance assessment is a tool that helps you understand 
+          your thinking preferences across four key areas.
         </p>
 
         <div className="info-section">

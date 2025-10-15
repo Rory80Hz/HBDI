@@ -60,7 +60,7 @@ function TeamMap() {
     }
 
     // Get existing team data
-    const existingTeamData = JSON.parse(localStorage.getItem('hbdiTeamData') || '[]')
+    const existingTeamData = JSON.parse(localStorage.getItem('brainTeamData') || '[]')
     
     // Create new team member entry
     const newMember = {
@@ -88,7 +88,7 @@ function TeamMap() {
       <div className="team-map-content">
         <header className="team-map-header">
           <h1>Add Team Member</h1>
-          <p>Enter your name and HBDI scores to add yourself to the team map</p>
+          <p>Enter your name and thinking style scores to add yourself to the team map</p>
         </header>
 
         <form onSubmit={handleSubmit} className="team-map-form">
@@ -107,7 +107,7 @@ function TeamMap() {
           </div>
 
           <div className="scores-section">
-            <h3>HBDI Scores (0-12 each)</h3>
+            <h3>Thinking Style Scores (0-12 each)</h3>
             <p className="scores-description">
               Enter your scores for each thinking preference category
             </p>
