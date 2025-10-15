@@ -55,6 +55,24 @@ const NameEntry = ({ name, onNameSubmit }) => {
           </button>
         </form>
         
+        <div className="additional-options">
+          <p>Or explore team mapping:</p>
+          <div className="team-buttons">
+            <button 
+              onClick={() => navigate('/team-map')}
+              className="btn-secondary"
+            >
+              Add to Team Map
+            </button>
+            <button 
+              onClick={() => navigate('/team-results')}
+              className="btn-secondary"
+            >
+              View Team Results
+            </button>
+          </div>
+        </div>
+        
       </div>
     </div>
   )

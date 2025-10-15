@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import NameEntry from './components/NameEntry'
 import AdjectiveSelection from './components/AdjectiveSelection'
 import ProfileResults from './components/ProfileResults'
+import TeamMap from './components/TeamMap'
+import TeamResults from './components/TeamResults'
 import './App.css'
 
 function ScrollToTop() {
@@ -62,6 +64,14 @@ function App() {
                   userData={userData}
                 />
               } 
+            />
+            <Route 
+              path="/team-map" 
+              element={<TeamMap />} 
+            />
+            <Route 
+              path="/team-results" 
+              element={<TeamResults />} 
             />
           </Routes>
         </main>

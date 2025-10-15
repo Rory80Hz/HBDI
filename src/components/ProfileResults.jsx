@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { calculateScores } from '../data/hbdiData'
 import './ProfileResults.css'
@@ -15,24 +15,11 @@ const ProfileResults = ({ userData }) => {
   const canvasRef = useRef(null)
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (!userData.name || !userData.selections || userData.selections.length === 0) {
-      navigate('/')
-      return
-    }
-
-    drawBrainProfile()
-  }, [userData, navigate])
-
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-
   const scores = calculateScores(userData.selections || [])
   const maxScore = Math.max(...Object.values(scores))
   const dominantColor = Object.entries(scores).find(([, score]) => score === maxScore)?.[0]
 
-  const drawBrainProfile = () => {
+  const drawBrainProfile = useCallback(() => {
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -78,28 +65,28 @@ const ProfileResults = ({ userData }) => {
     ctx.lineTo(centerX - radius * 0.707, centerY + radius * 0.707)
     ctx.stroke()
 
-    // Draw quadrant labels in diagonal positions
-    ctx.font = 'bold 18px Arial'
+    // Draw quadrant labels outside the chart area
+    ctx.font = 'bold 14px Arial'
     ctx.textAlign = 'center'
     
-    // Purpose (Top-Left) - Blue
+    // Purpose (Top-Left) - Blue, positioned just outside chart
     ctx.fillStyle = '#3498db'
-    ctx.fillText('Purpose', centerX - radius * 0.6, centerY - radius * 0.6)
+    ctx.fillText('Purpose (Blue)', centerX - radius * 0.8, centerY - radius * 0.8)
     
-    // Possibilities (Top-Right) - Yellow
+    // Possibilities (Top-Right) - Yellow, positioned just outside chart
     ctx.fillStyle = '#f1c40f'
-    ctx.fillText('Possibilities', centerX + radius * 0.6, centerY - radius * 0.6)
+    ctx.fillText('Possibilities (Yellow)', centerX + radius * 0.8, centerY - radius * 0.8)
     
-    // People (Bottom-Right) - Red
+    // People (Bottom-Right) - Red, positioned just outside chart
     ctx.fillStyle = '#e74c3c'
-    ctx.fillText('People', centerX + radius * 0.6, centerY + radius * 0.7)
+    ctx.fillText('People (Red)', centerX + radius * 0.8, centerY + radius * 0.9)
     
-    // Process (Bottom-Left) - Green
+    // Process (Bottom-Left) - Green, positioned just outside chart
     ctx.fillStyle = '#2ecc71'
-    ctx.fillText('Process', centerX - radius * 0.6, centerY + radius * 0.7)
+    ctx.fillText('Process (Green)', centerX - radius * 0.8, centerY + radius * 0.9)
 
     // Calculate points for each quadrant (diagonal positions)
-    const maxScore = 24
+    const maxScore = 12  // Corrected: maximum possible score is 12, not 24
     const points = {
       blue: { // Purpose - Top-Left
         x: centerX - (scores.blue / maxScore) * radius * 0.707,
@@ -148,7 +135,20 @@ const ProfileResults = ({ userData }) => {
       ctx.lineWidth = 2
       ctx.stroke()
     })
-  }
+  }, [scores])
+
+  useEffect(() => {
+    if (!userData.name || !userData.selections || userData.selections.length === 0) {
+      navigate('/')
+      return
+    }
+
+    drawBrainProfile()
+  }, [userData, navigate, drawBrainProfile])
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const resetAssessment = () => {
     localStorage.removeItem('hbdiUserData')
@@ -224,15 +224,33 @@ const ProfileResults = ({ userData }) => {
           )}
         </div>
       </div>
+      
+      <div className="team-options">
+        <h3>Want to compare with your team?</h3>
+        <div className="team-buttons">
+          <button 
+            onClick={() => navigate('/team-map')}
+            className="btn-team"
+          >
+            Add to Team Map
+          </button>
+          <button 
+            onClick={() => navigate('/team-results')}
+            className="btn-team"
+          >
+            View Team Results
+          </button>
+        </div>
+      </div>
 
       <div className="results-actions">
-        <button onClick={resetAssessment} className="btn-secondary">
-          Take Assessment Again
+        <button onClick={resetAssessment} className="btn-primary">
+          Retry
         </button>
         <button onClick={() => window.print()} className="btn-primary">
           Print Results
         </button>
-      </div>
+      </div>      
     </div>
   )
 }
