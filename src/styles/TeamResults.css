@@ -55,6 +55,52 @@
   border: 2px solid #e1e5e9;
   border-radius: 8px;
   background: #f8f9fa;
+  cursor: default;
+}
+
+.member-info-panel {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: white;
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 200px;
+  z-index: 10;
+}
+
+.member-info-panel h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.info-scores div {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.close-info {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #999;
+  line-height: 1;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.close-info:hover {
+  color: #333;
 }
 
 .tooltip {

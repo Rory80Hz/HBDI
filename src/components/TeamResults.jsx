@@ -6,8 +6,7 @@ function TeamResults() {
   const navigate = useNavigate()
   const canvasRef = useRef(null)
   const [teamData, setTeamData] = useState([])
-  const [hoveredMember, setHoveredMember] = useState(null)
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  const [selectedMember, setSelectedMember] = useState(null)
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('brainTeamData') || '[]')
@@ -144,7 +143,8 @@ function TeamResults() {
         // Draw the main dot
         ctx.beginPath()
         ctx.arc(dotPosition.x, dotPosition.y, 6, 0, 2 * Math.PI)
-        ctx.fillStyle = hoveredMember === member.id ? '#fd7e14' : '#495057'
+        // Draw team member position as a dot with highest score color
+        ctx.fillStyle = selectedMember === member.id ? '#fd7e14' : '#495057'
         ctx.fill()
         ctx.strokeStyle = 'white'
         ctx.lineWidth = 2
@@ -156,8 +156,8 @@ function TeamResults() {
         ctx.textAlign = 'left'
         ctx.fillText(member.name, dotPosition.x + 10, dotPosition.y + 4)
         
-        // If this member is hovered, draw their full profile
-        if (hoveredMember === member.id) {
+        // If this member is selected, draw their full profile
+        if (selectedMember === member.id) {
           // Calculate all four points for full profile
           const allPoints = {
             purpose: position.purpose,
@@ -201,13 +201,46 @@ function TeamResults() {
         member.canvasPosition = dotPosition
       }
     })
-  }, [teamData, hoveredMember])
+  }, [teamData, selectedMember])
 
   useEffect(() => {
     if (teamData.length > 0) {
       drawTeamMap()
     }
   }, [teamData, drawTeamMap])
+
+  const handleCanvasClick = (e) => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    
+    const rect = canvas.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    
+    // Check if click is on any team member dot
+    let foundMember = null
+    teamData.forEach(member => {
+      if (member.canvasPosition) {
+        const distance = Math.sqrt(
+          Math.pow(x - member.canvasPosition.x, 2) + 
+          Math.pow(y - member.canvasPosition.y, 2)
+        )
+        if (distance <= 12) { // Click detection area
+          foundMember = member.id
+        }
+      }
+    })
+    
+    // Toggle selection: if clicking on already selected member, deselect them
+    if (foundMember === selectedMember) {
+      setSelectedMember(null)
+    } else {
+      setSelectedMember(foundMember)
+    }
+    
+    // Set cursor style based on whether we're over a clickable area
+    canvas.style.cursor = foundMember ? 'pointer' : 'default'
+  }
 
   const handleCanvasMouseMove = (e) => {
     const canvas = canvasRef.current
@@ -217,9 +250,7 @@ function TeamResults() {
     const x = e.clientX - rect.left
     const y = e.clientY - rect.top
     
-    setMousePos({ x: e.clientX, y: e.clientY })
-    
-    // Check if mouse is over any team member dot
+    // Just handle cursor changes on mouse move
     let foundMember = null
     teamData.forEach(member => {
       if (member.canvasPosition) {
@@ -227,18 +258,13 @@ function TeamResults() {
           Math.pow(x - member.canvasPosition.x, 2) + 
           Math.pow(y - member.canvasPosition.y, 2)
         )
-        if (distance <= 12) { // Slightly larger hit area
+        if (distance <= 12) {
           foundMember = member.id
         }
       }
     })
     
-    setHoveredMember(foundMember)
     canvas.style.cursor = foundMember ? 'pointer' : 'default'
-  }
-
-  const handleCanvasMouseLeave = () => {
-    setHoveredMember(null)
   }
 
   const removeMember = (memberId) => {
@@ -254,7 +280,7 @@ function TeamResults() {
     }
   }
 
-  const hoveredMemberData = hoveredMember ? teamData.find(m => m.id === hoveredMember) : null
+  const selectedMemberData = selectedMember ? teamData.find(m => m.id === selectedMember) : null
 
   return (
     <div className="team-results-container">
@@ -280,26 +306,25 @@ function TeamResults() {
               <canvas
                 ref={canvasRef}
                 className="team-canvas"
+                onClick={handleCanvasClick}
                 onMouseMove={handleCanvasMouseMove}
-                onMouseLeave={handleCanvasMouseLeave}
               />
               
-              {hoveredMemberData && (
-                <div 
-                  className="tooltip"
-                  style={{
-                    left: mousePos.x + 10,
-                    top: mousePos.y - 80,
-                    position: 'fixed'
-                  }}
-                >
-                  <h4>{hoveredMemberData.name}</h4>
-                  <div className="tooltip-scores">
-                    <div>Purpose: {hoveredMemberData.scores.purpose}</div>
-                    <div>Possibilities: {hoveredMemberData.scores.possibilities}</div>
-                    <div>People: {hoveredMemberData.scores.people}</div>
-                    <div>Process: {hoveredMemberData.scores.process}</div>
+              {selectedMemberData && (
+                <div className="member-info-panel">
+                  <h4>{selectedMemberData.name}</h4>
+                  <div className="info-scores">
+                    <div>Purpose: {selectedMemberData.scores.purpose}</div>
+                    <div>Possibilities: {selectedMemberData.scores.possibilities}</div>
+                    <div>People: {selectedMemberData.scores.people}</div>
+                    <div>Process: {selectedMemberData.scores.process}</div>
                   </div>
+                  <button 
+                    onClick={() => setSelectedMember(null)}
+                    className="close-info"
+                  >
+                    ×
+                  </button>
                 </div>
               )}
             </div>
